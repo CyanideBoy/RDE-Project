@@ -8,6 +8,7 @@ Important links for implementation of model - <br>
 * PyTorch to Keras (Outdated?) [https://github.com/gzuidhof/nn-transfer]
 * Innvestigate [https://github.com/albermax/innvestigate]
 * LRP information [http://www.heatmapping.org/]
-* Freeze training PyTorch [https://gist.github.com/L0SG/2f6d81e4ad119c4f798ab81fa8d62d3f][https://discuss.pytorch.org/t/how-the-pytorch-freeze-network-in-some-layers-only-the-rest-of-the-training/7088/2]
+* Freeze training PyTorch [https://gist.github.com/L0SG/2f6d81e4ad119c4f798ab81fa8d62d3f]
+* Freeze training PyTorch [https://discuss.pytorch.org/t/how-the-pytorch-freeze-network-in-some-layers-only-the-rest-of-the-training/7088/2]
 * PyTorch folder based Dataloader [https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html]
 * PyTorch Dataloader [https://pytorch.org/tutorials/beginner/data_loading_tutorial.html]
