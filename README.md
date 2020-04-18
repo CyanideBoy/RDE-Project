@@ -12,3 +12,5 @@ Important links for implementation of model - <br>
 * Freeze training PyTorch [https://discuss.pytorch.org/t/how-the-pytorch-freeze-network-in-some-layers-only-the-rest-of-the-training/7088/2]
 * PyTorch folder based Dataloader [https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html]
 * PyTorch Dataloader [https://pytorch.org/tutorials/beginner/data_loading_tutorial.html]
+* News20 Dataset [https://github.com/Rohit9314/Classifying-20-news-group-dataset-using-support-vector-machine/blob/master/Support%2BVector%2BMachine.ipynb]
+* Sklearn News20 dataset [https://scikit-learn.org/0.19/datasets/twenty_newsgroups.html]
