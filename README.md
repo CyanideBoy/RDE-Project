@@ -14,3 +14,4 @@ Important links for implementation of model - <br>
 * PyTorch Dataloader [https://pytorch.org/tutorials/beginner/data_loading_tutorial.html]
 * News20 Dataset [https://github.com/Rohit9314/Classifying-20-news-group-dataset-using-support-vector-machine/blob/master/Support%2BVector%2BMachine.ipynb]
 * Sklearn News20 dataset [https://scikit-learn.org/0.19/datasets/twenty_newsgroups.html]
+* Text Classification [https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html]
