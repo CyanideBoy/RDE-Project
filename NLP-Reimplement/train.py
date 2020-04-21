@@ -7,29 +7,26 @@ from model import ConvNet
 import matplotlib.pyplot as plt
 import time
 import sys
+import torch_optimizer as optim
 
 
 '''
 Arg1 = Learning Rate
-Arg2 = Gamma (only valid if Arg1 is present)
+Arg2 = Gamma 
 '''
 
 LEARNINGRATE = 1e-2
 GAMMA = 0.96
 
-if sys.argv[1] is not None:
-    LEARNINGRATE = float(sys.argv[1])
+LEARNINGRATE = float(sys.argv[1])
 
 
-if sys.argv[2] is not None:
-    GAMMA = float(sys.argv[2])
+GAMMA = float(sys.argv[2])
 
 
 BATCHSIZE = 256
 NUMEPOCHS = 45
 
-print(LEARNINGRATE)
-print(GAMMA)
 
 train_x, train_y = train_data()
 
@@ -52,7 +49,7 @@ print('Model Built.')
 print('Initializing optimizer and scheduler..')
 
 criterion = torch.nn.NLLLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr = LEARNINGRATE)
+optimizer = torch.optim.Adam(model.parameters(), lr = LEARNINGRATE)             # OR RAdam/DiffGrad/etc
 scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma = GAMMA)
 
 print('Optimizer and scheduler initialized.')
@@ -150,5 +147,4 @@ plt.legend(['Train','Val'])
 plt.grid(True)
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
-plt.show();
- 
+plt.show()
