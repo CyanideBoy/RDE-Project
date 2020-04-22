@@ -10,8 +10,3 @@ Important links for implementation of model - <br>
 * LRP information [http://www.heatmapping.org/]
 * Freeze training PyTorch [https://gist.github.com/L0SG/2f6d81e4ad119c4f798ab81fa8d62d3f]
 * Freeze training PyTorch [https://discuss.pytorch.org/t/how-the-pytorch-freeze-network-in-some-layers-only-the-rest-of-the-training/7088/2]
-* PyTorch folder based Dataloader [https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html]
-* PyTorch Dataloader [https://pytorch.org/tutorials/beginner/data_loading_tutorial.html]
-* News20 Dataset [https://github.com/Rohit9314/Classifying-20-news-group-dataset-using-support-vector-machine/blob/master/Support%2BVector%2BMachine.ipynb]
-* Sklearn News20 dataset [https://scikit-learn.org/0.19/datasets/twenty_newsgroups.html]
-* Text Classification [https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html]
