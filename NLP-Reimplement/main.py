@@ -19,10 +19,10 @@ tar -xzf 20news-bydate.tar.gz
 '''
 
 LEARNINGRATE = 8e-3
-GAMMA = 0.9
+GAMMA = 0.93
 
-BATCHSIZE = 256
-NUMEPOCHS = 11
+BATCHSIZE = 1024
+NUMEPOCHS = 50
 
 
 dset = get_dataset('20news-bydate-train')
@@ -56,7 +56,7 @@ print(NUM_DATA_POINTS)
 
 ## Loading Model
 
-model = ConvNet()
+model = ConvNet(True)
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('Running on',device)
 print('Building model..')	
@@ -97,7 +97,7 @@ for epoch in range(1,NUMEPOCHS+1):
     runloss = 0.0
     tacc = 0
     
-    for data_input, data_output in train_loader:
+    for data_input, data_output, pas in train_loader:
         
         data_input = torch.as_tensor(data_input)
         data_output = torch.as_tensor(data_output)
@@ -130,7 +130,7 @@ for epoch in range(1,NUMEPOCHS+1):
     corr = 0
     
     with torch.no_grad():
-        for data_input, data_output in validation_loader:
+        for data_input, data_output, pas in validation_loader:
             
             data_input = torch.as_tensor(data_input, dtype=torch.float)
             data_output = torch.as_tensor(data_output)
@@ -172,7 +172,7 @@ for epoch in range(1,NUMEPOCHS+1):
     torch.save(model.state_dict(), 'Model_quicksave'+str(epoch)+'.pt')
 
     scheduler.step()
-'''
+
 plt.plot(np.array(loss_values_train), 'b')
 plt.plot(np.array(loss_values_val), 'r')
 plt.legend(['Train','Val'])
@@ -180,5 +180,3 @@ plt.grid(True)
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.show()
-'''
-
