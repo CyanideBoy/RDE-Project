@@ -117,7 +117,7 @@ for epoch in range(1,NUMEPOCHS+1):
         optimizer.step()
 
         runloss += loss.item() * data_input.size(0)
-        tacc += torch.sum(preds == data_output.data)
+        tacc += (torch.sum(preds == data_output.data)).data.item()
 
     runloss /= train_points 
     tacc = 100*tacc.double()/ train_points
@@ -148,16 +148,16 @@ for epoch in range(1,NUMEPOCHS+1):
             
             loss = criterion(output, data_output)
             val_loss += loss.item()* data_input.size(0)
-            corr += torch.sum(preds == data_output.data)
+            corr += (torch.sum(preds == data_output.data)).data.item()
             
 
     val_loss /= val_points
-    corr = 100*corr/val_points
+    corr = corr*100.0/val_points
     loss_values_val.append(val_loss)
 
     if val_loss <= min_val_loss:
         min_val_loss = val_loss
-        torch.save(model.state_dict(), 'Model_best_val_quicksave.pt')
+        torch.save(model.state_dict(), 'weights/Model_best_val_quicksave.pt')
 
     
     stop_time = time.time()
@@ -169,7 +169,7 @@ for epoch in range(1,NUMEPOCHS+1):
                                                                                 (time_el%3600)//60,
                                                                                 time_el%60))
     
-    torch.save(model.state_dict(), 'Model_quicksave'+str(epoch)+'.pt')
+    torch.save(model.state_dict(), 'weights/Model_quicksave'+str(epoch)+'.pt')
 
     scheduler.step()
 

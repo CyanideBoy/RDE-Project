@@ -10,14 +10,14 @@ from CustomDataset import get_dataset
 
 tset = get_dataset('20news-bydate-test')
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-model = ConvNet()
+model = ConvNet(True)
 print('Running on',device)
 print('Building model..')	
 model.to(device)
 print('Model Built.')
 
-FILE = 'Model_quicksave7.pt'
-BATCHSIZE = 256
+FILE = 'weights/Model_quicksave39.pt'
+BATCHSIZE = 1024
 
 model.load_state_dict(torch.load(FILE))
 model.eval()
@@ -25,14 +25,14 @@ model.eval()
 test_points = len(tset)
 
 
-corr = 0
+corr = 0.0
 
 
 test_loader = torch.utils.data.DataLoader(tset, batch_size = BATCHSIZE, 
                                             num_workers=8)
 
 with torch.no_grad():
-    for data_input, data_output in test_loader:
+    for data_input, data_output, pafs in test_loader:
         
         data_input = torch.as_tensor(data_input, dtype=torch.float)
         data_output = torch.as_tensor(data_output)
@@ -42,7 +42,8 @@ with torch.no_grad():
 
         output = model(data_input)
         _, preds = torch.max(output,dim=1)
-        corr += torch.sum(preds == data_output.data)
-
+        corr += (torch.sum(preds == data_output.data)).data.item()
         
-print('Test Accuracy: {:.2f}%'.format(100*corr/test_points))
+print('Test Accuracy: {:.2f}%'.format(corr*100.0/test_points))
+print(test_points)
+print(corr)
