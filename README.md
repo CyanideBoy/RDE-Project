@@ -10,3 +10,4 @@ Important links for implementation of model - <br>
 * LRP information [http://www.heatmapping.org/]
 * Freeze training PyTorch [https://gist.github.com/L0SG/2f6d81e4ad119c4f798ab81fa8d62d3f]
 * Freeze training PyTorch [https://discuss.pytorch.org/t/how-the-pytorch-freeze-network-in-some-layers-only-the-rest-of-the-training/7088/2]
+* Loading and saving in Pytorch [https://pytorch.org/tutorials/beginner/saving_loading_models.html]
