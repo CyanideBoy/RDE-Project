@@ -11,31 +11,30 @@ from keras import backend as K
 import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
-from keras.layers import Conv2D, Input, Dense, MaxPool2D, Flatten, Lambda
+from keras.layers import Conv2D, Input, Dense, MaxPool2D, Flatten, Lambda, GlobalMaxPool2D
 from keras.models import Model
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
 from model import ConvNet
-
+from CustomDataset import get_dataset
 
 model = ConvNet(False)
 model.cpu()
 model.eval()
-model.load_state_dict(torch.load('weights/Model_quicksave39.pt'))
+model.load_state_dict(torch.load('Model_quicksave4.pt'))
 
 print(K.image_data_format())
 
 with tf.device('/cpu:0'):
-    inp = Input((400,300,1))
+    inp = Input((None,300,1))
     x = Conv2D(800,(2,300),activation='relu', name='conv1')(inp)
     
     # Reshaping to (BCHW)
-    x = MaxPool2D((399,1))(x)
-    
+    x = GlobalMaxPool2D('channels_last')(x)
     # Reshaping to (BCHW)
-    x = Lambda(lambda x: K.permute_dimensions(x, (0, 3, 1, 2)))(x)
-    x = Flatten()(x)
+    #x = Lambda(lambda x: K.permute_dimensions(x, (0, 3, 1, 2)))(x)
+    #x = Flatten()(x)
     out = Dense(20,name='fc1')(x)
     k_model = Model(inp, out)
 
