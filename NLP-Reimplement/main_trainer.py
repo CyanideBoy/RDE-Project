@@ -18,11 +18,11 @@ gunzip GoogleNews-vectors-negative300.bin.gz
 tar -xzf 20news-bydate.tar.gz
 '''
 
-LEARNINGRATE = 8e-3
-GAMMA = 0.93
+LEARNINGRATE = 1e-2
+GAMMA = 0.92
 
-BATCHSIZE = 1024
-NUMEPOCHS = 50
+BATCHSIZE = 512
+NUMEPOCHS = 30
 
 
 dset = get_dataset('20news-bydate-train')
@@ -57,7 +57,7 @@ print(NUM_DATA_POINTS)
 ## Loading Model
 
 model = ConvNet(True)
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 print('Running on',device)
 print('Building model..')	
 model.to(device)
@@ -66,7 +66,7 @@ print('Model Built.')
 print('Initializing optimizer and scheduler..')
 
 criterion = torch.nn.NLLLoss()
-optimizer = optim.RAdam(model.parameters(), lr = LEARNINGRATE)             # OR RAdam/DiffGrad/etc
+optimizer = optim.AdaBound(model.parameters(), lr = LEARNINGRATE)             # OR RAdam/DiffGrad/etc
 scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma = GAMMA)
 
 print('Optimizer and scheduler initialized.')
@@ -120,7 +120,7 @@ for epoch in range(1,NUMEPOCHS+1):
         tacc += (torch.sum(preds == data_output.data)).data.item()
 
     runloss /= train_points 
-    tacc = 100*tacc.double()/ train_points
+    tacc = tacc*100.0/ train_points
     
     loss_values_train.append(runloss)
     
@@ -168,15 +168,16 @@ for epoch in range(1,NUMEPOCHS+1):
                                                                                 time_el//3600,
                                                                                 (time_el%3600)//60,
                                                                                 time_el%60))
-    
-    torch.save(model.state_dict(), 'weights/Model_quicksave'+str(epoch)+'.pt')
+    if epoch%2 == 0:
+        torch.save(model.state_dict(), 'weights/Model_quicksave'+str(epoch)+'.pt')
 
     scheduler.step()
 
+fig = plt.figure()
 plt.plot(np.array(loss_values_train), 'b')
 plt.plot(np.array(loss_values_val), 'r')
 plt.legend(['Train','Val'])
 plt.grid(True)
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
-plt.show()
+fig.savefig('train_curve.png', dpi=fig.dpi)

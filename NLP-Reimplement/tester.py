@@ -9,21 +9,21 @@ from model import ConvNet
 from CustomDataset import get_dataset
 
 tset = get_dataset('20news-bydate-test')
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 model = ConvNet(True)
 print('Running on',device)
 print('Building model..')	
 model.to(device)
 print('Model Built.')
 
-FILE = 'weights/Model_quicksave39.pt'
+FILE = 'weights/Model_quicksave30.pt'
 BATCHSIZE = 1024
 
 model.load_state_dict(torch.load(FILE))
 model.eval()
 
 test_points = len(tset)
-
+print("Number of testing documents", test_points)
 
 corr = 0.0
 
