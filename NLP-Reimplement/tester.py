@@ -17,7 +17,7 @@ model.to(device)
 print('Model Built.')
 
 FILE = 'weights/Model_quicksave30.pt'
-BATCHSIZE = 1024
+BATCHSIZE = 256
 
 model.load_state_dict(torch.load(FILE))
 model.eval()

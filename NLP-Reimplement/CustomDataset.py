@@ -84,7 +84,8 @@ class w2v(object):
         return matrix
 
 vec_trans = w2v()
-composed_tf = transforms.Compose([vec_trans,normalize(),transforms.ToTensor()])
+#composed_tf = transforms.Compose([vec_trans,normalize(),transforms.ToTensor()])
+composed_tf = transforms.Compose([vec_trans, transforms.ToTensor()])
 
 
 class DatasetFolderWithPaths(datasets.DatasetFolder):

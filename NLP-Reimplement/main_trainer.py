@@ -19,24 +19,26 @@ tar -xzf 20news-bydate.tar.gz
 '''
 
 LEARNINGRATE = 1e-2
-GAMMA = 0.92
+GAMMA = 0.93
 
-BATCHSIZE = 512
-NUMEPOCHS = 30
+BATCHSIZE = 256
+NUMEPOCHS = 40
 
 
 dset = get_dataset('20news-bydate-train')
 
 class_names = dset.classes
 print(class_names)
-
 ### TRAIN VAL SPLIT
 
 NUM_DATA_POINTS = len(dset)
 
 indices = list(range(NUM_DATA_POINTS))
-split = int(np.floor(0.2 * NUM_DATA_POINTS))
+split = int(np.floor(0.0884 * NUM_DATA_POINTS))
 np.random.shuffle(indices)
+
+print(indices[0])
+
 
 train_indices, val_indices = indices[split:], indices[:split]
 
@@ -57,7 +59,7 @@ print(NUM_DATA_POINTS)
 ## Loading Model
 
 model = ConvNet(True)
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('Running on',device)
 print('Building model..')	
 model.to(device)
@@ -66,7 +68,7 @@ print('Model Built.')
 print('Initializing optimizer and scheduler..')
 
 criterion = torch.nn.NLLLoss()
-optimizer = optim.AdaBound(model.parameters(), lr = LEARNINGRATE)             # OR RAdam/DiffGrad/etc
+optimizer = optim.RAdam(model.parameters(), lr = LEARNINGRATE)             # OR RAdam/DiffGrad/etc
 scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma = GAMMA)
 
 print('Optimizer and scheduler initialized.')
