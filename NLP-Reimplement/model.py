@@ -32,7 +32,7 @@ class ConvNet(nn.Module):
         
         #print(x.shape)
         x = x.view(x.shape[0],-1)
-        x = self.fc1(x)
+        x = F.relu(self.fc1(x))
         x = self.dropout1(x)
         x = self.fc2(x)
         x = self.dropout2(x)
