@@ -7,6 +7,18 @@ import nltk
 import re
 import os 
 from gensim import models
+import string
+
+a1 = set("-'")
+a2 = set(string.ascii_letters + "'-")
+
+def check_set(x):
+
+    if a2.issuperset(x) and not a1.issuperset(x):
+        return True
+
+    return False
+ 
 
 def cvalid(file):
 
@@ -31,6 +43,7 @@ class normalize(object):
 
     def __call__(self, sample):
         return (sample-self.mean)/self.std
+        #return sample/self.std
 
 class w2v(object):
     """
@@ -56,15 +69,19 @@ class w2v(object):
         
         rem = []
         for w in sample:
-            if w=='.':
+            #if w=='.':
+            #    continue
+            #if w=="'":
+            #    continue
+            #if not re.search("[^a-zA-Z'-]", w):
+            #    continue
+
+            if check_set(w):
                 continue
-            if w=="'":
-                continue
-            if re.search('[a-zA-Z]', w):
-                continue
+
             else:
                 rem += [w]
-        
+            
         for r in rem:
             sample.remove(r)
 
