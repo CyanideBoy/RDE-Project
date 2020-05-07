@@ -121,6 +121,14 @@ class DatasetFolderWithPaths(datasets.DatasetFolder):
         return tuple_with_path
 
     def get_words_list(self,index):
+        """Get list of scrapped words of the document with given index
+
+        Keyword arguments:
+        index -- index of file
+        
+        Returns:
+        proc_text -- words in a list
+        """
         _1, _2, path = self.__getitem__(index)
         text = head_scraper(path)
         proc_text = vec_trans.rem_punct(text)
@@ -128,12 +136,36 @@ class DatasetFolderWithPaths(datasets.DatasetFolder):
         return proc_text
     
     def get_custom_matrix(self,index):
-          sample, target, path = self.__getitem__(index)
-          text = head_scraper(path)
-          proc_text = vec_trans.rem_punct(text)
-          sample = vec_trans.matrixify(proc_text,len(proc_text))
+        """Get Embedding of the document with given index
 
-          return sample
+        Keyword arguments:
+        index -- index of file
+        
+        Returns:
+        sample -- Matrix with shape (N,300)
+        """
+        sample, target, path = self.__getitem__(index)
+        text = head_scraper(path)
+        proc_text = vec_trans.rem_punct(text)
+        sample = vec_trans.matrixify(proc_text,len(proc_text))
+
+        return sample
+
+    def data_from_path(self, path_):
+        """Get data from path.
+
+        Keyword arguments:
+        path_ -- Path of file
+        
+        Returns:
+        proc_text, sample -- words list and the embeddings
+        """
+        text = head_scraper(path_)
+        proc_text = vec_trans.rem_punct(text)
+        sample = vec_trans.matrixify(proc_text,len(proc_text))
+        
+        return proc_text, sample
+
 
 def get_dataset(data_path):
 
