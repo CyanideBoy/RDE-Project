@@ -1,0 +1,19 @@
+# data parameters
+train_data_path: /home/SharedData3/ushasi/tub/gan/places365_standard/train
+val_data_path: /home/SharedData3/ushasi/tub/gan/places365_standard/val
+resume: False
+resume_bestval: False
+#checkpoint_dir: /home/SharedData3/ushasi/tub/gan/Weights
+
+teacher : resnet50
+expname: SN2-vanilla-big_step
+
+
+# training parameters
+batch_size: 512
+gpu_ids: [0]  # set the GPU ids to use, e.g. [0] or [1, 2]
+num_workers: 8
+lr: 0.0015
+epochs: 25
+snapshot_save_iter: 2
+gamma: 0.95

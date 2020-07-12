@@ -1,0 +1,25 @@
+# data parameters
+train_data_path: /home/SharedData3/ushasi/tub/gan/places365_standard/train
+val_data_path: /home/SharedData3/ushasi/tub/gan/places365_standard/val
+resume: False
+resume_bestval: False
+#checkpoint_dir: /home/SharedData3/ushasi/tub/gan/Weights
+
+teacher : resnet50
+method_name: Pretrained-Softmax-KLDiv-1_5-5
+
+pretrained: True
+ptrain_name: SN2-vanilla
+
+# training parameters
+temperature: 1.5
+lambda: 0.5
+batch_size: 512
+gpu_ids: [2]  # set the GPU ids to use, e.g. [0] or [1, 2]
+num_workers: 8
+lr: 0.0008
+epochs: 25
+snapshot_save_iter: 2
+gamma: 0.95
+
+val_frequency: 20
