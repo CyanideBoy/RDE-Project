@@ -102,7 +102,7 @@ class ConvNet_Shallow(nn.Module):
 
 class ConvNet_Shallow_Single(nn.Module):
 
-    def __init__(self,last_layer, WINDOW = 3, FEATURES = 256):
+    def __init__(self,last_layer, WINDOW = 3, FEATURES = 2):
         super(ConvNet_Shallow_Single, self).__init__()
 
         self.feat = FEATURES
@@ -118,7 +118,7 @@ class ConvNet_Shallow_Single(nn.Module):
         #self.fc2 = nn.Linear(64,4)
         #self.dropout2 = nn.Dropout(0.35)
 
-        self.fc1 = nn.Linear(self.feat, 32)
+        self.fc1 = nn.Linear(self.feat, 4)
         self.dropout1 = nn.Dropout(0.25)
 
 
