@@ -1,0 +1,1 @@
+Trial script on MNIST
