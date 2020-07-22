@@ -5,4 +5,4 @@ Important links for implementation of model - <br>
 * LRP information [http://www.heatmapping.org/]
 * RAP Method [https://github.com/wjNam/Relative_Attributing_Propagation]
 <br>
-Knowledge distillation experiments not rigorously done yet
+Knowledge distillation experiments not rigorously done yet <hr>
