@@ -14,4 +14,4 @@ Knowledge distillation experiments not rigorously done yet <hr>
 | NG20             	|  RDE methods and experiments <br> on News Group 20 dataset   	|
 | KD-MNIST    	    |  Knowledge distillation experiments <br> on MNIST dataset 	| 
 | KD-Places2        |  Knowledge distillation experiments <br> on Places2 dataset |
-|    MNIST-Trial    |  Used For basic understanding of<br> RDE method on images |
+|    MNIST-Trial    |  Used for basic understanding of<br> RDE method on images |
