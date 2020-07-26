@@ -15,3 +15,4 @@ Knowledge distillation experiments not rigorously done yet <hr>
 | KD-MNIST    	    |  Knowledge distillation experiments <br> on MNIST dataset 	| 
 | KD-Places2        |  Knowledge distillation experiments <br> on Places2 dataset |
 | MNIST-Trial       |  Used for basic understanding of<br> RDE method on images |
+| Report            |  Final report and all images |
